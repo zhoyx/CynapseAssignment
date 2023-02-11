@@ -16,3 +16,5 @@ function distributeMoney(n, amt, granularity = 100) {
     dist = dist.map(x => x/granularity);
     return dist;
 }
+
+module.exports = { distributeMoney };
