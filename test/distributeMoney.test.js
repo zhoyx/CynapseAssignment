@@ -11,6 +11,16 @@ describe('distributeMoney Tests', () => {
         }
     })
 
+    test('should throw exception if input not of type number', () => {
+        let participants = Array();
+        let amount = 20;
+        expect(() => distr.distributeMoney(participants, amount)).toThrow('All input parameters must be of type number');
+
+        participants = 10;
+        amount = "20";
+        expect(() => distr.distributeMoney(participants, amount)).toThrow('All input parameters must be of type number')
+    })
+
     test('correct number of participants in output array', () => {
         for (let i = 1; i < 20; i++) {
             let distribution = distr.distributeMoney(i, 10);
