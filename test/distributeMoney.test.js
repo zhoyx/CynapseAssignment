@@ -8,6 +8,12 @@ describe('distributeMoney Tests', () => {
         }
     })
 
+    test('should distribute correct amount with decimal money input', () => {
+        let distribution = distr.distributeMoney(10, 10.20);
+        let sum = distribution.reduce((partialSum, currentVal)=> partialSum + currentVal);
+        expect(sum).toBeCloseTo(10.20);
+    })
+
     test('each participant receive at least 1 cent', () => {
         for (let i = 0; i < 100; i++) {
             let distribution = distr.distributeMoney(10, 1);
