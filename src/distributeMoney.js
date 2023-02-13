@@ -1,25 +1,25 @@
 /**
  * Randomly allocates money to a set number of participants.
- * @param {number} n - The number of participants to distribute money to.
+ * @param {number} participantCount - The number of participants to distribute money to.
  * @param {number} amt - The amount of money in dollars to distribute.
  * @param {number} granularity - Level of granularity in distribution.
  * @throws {TypeError} If any input parameters are not of type number.
  * @throws {RangeError} If any input parameters are less than or equals to zero.
  * @returns {Array} An array containing the distributed amount to each participant.
  */
-function distributeMoney(n, amt, granularity = 100) {
-    if (typeof n !== 'number' || typeof amt !== 'number' || typeof granularity !== 'number') {
+function distributeMoney(participantCount, amt, granularity = 100) {
+    if (typeof participantCount !== 'number' || typeof amt !== 'number' || typeof granularity !== 'number') {
         throw new TypeError('All input parameters must be of type number');
     }
-    if (n <= 0 || amt <= 0 || granularity <= 0) {
+    if (participantCount <= 0 || amt <= 0 || granularity <= 0) {
         throw new RangeError('Input parameters must be greater than zero');
     }
 
-    let dist = Array(n).fill(1);
+    let dist = Array(participantCount).fill(1);
     amt *= granularity;
-    amt -= n;
+    amt -= participantCount;
     for (let i = 0; i < amt; i++) {
-        let index = Math.floor(Math.random()*n);
+        let index = Math.floor(Math.random()*participantCount);
         dist[index]++;
     }
     dist = dist.map(x => x/granularity);
