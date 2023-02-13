@@ -1,6 +1,16 @@
 const distr = require('../src/distributeMoney');
 
 describe('distributeMoney Tests', () => { 
+    test('should return an array of numbers', () => {
+        const participants = 10;
+        const amount = 20;
+        const distribution = distr.distributeMoney(participants, amount);
+        expect(Array.isArray(distribution)).toBeTruthy();
+        for (let i = 0; i < participants; i++) {
+            expect(typeof distribution[i]).toBe('number');
+        }
+    })
+
     test('correct number of participants in output array', () => {
         for (let i = 1; i < 20; i++) {
             let distribution = distr.distributeMoney(i, 10);
@@ -9,9 +19,9 @@ describe('distributeMoney Tests', () => {
     })
 
     test('should distribute correct amount with decimal money input', () => {
-        let distribution = distr.distributeMoney(10, 10.20);
+        let distribution = distr.distributeMoney(10, 10.23);
         let sum = distribution.reduce((partialSum, currentVal)=> partialSum + currentVal);
-        expect(sum).toBeCloseTo(10.20);
+        expect(sum).toBeCloseTo(10.23);
     })
 
     test('each participant receive at least 1 cent', () => {
