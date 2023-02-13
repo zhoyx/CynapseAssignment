@@ -18,7 +18,21 @@ describe('distributeMoney Tests', () => {
 
         participants = 10;
         amount = "20";
-        expect(() => distr.distributeMoney(participants, amount)).toThrow('All input parameters must be of type number')
+        expect(() => distr.distributeMoney(participants, amount)).toThrow('All input parameters must be of type number');
+    })
+
+    test('should throw exception if input is zero or negative', () => {
+        let participants = -1;
+        let amount = -10;
+        expect(() => distr.distributeMoney(participants, amount)).toThrow('Input parameters must be greater than zero');
+
+        participants = 1;
+        amount = -10;
+        expect(() => distr.distributeMoney(participants, amount)).toThrow('Input parameters must be greater than zero');
+
+        participants = -1;
+        amount = 10;
+        expect(() => distr.distributeMoney(participants, amount)).toThrow('Input parameters must be greater than zero');
     })
 
     test('correct number of participants in output array', () => {
