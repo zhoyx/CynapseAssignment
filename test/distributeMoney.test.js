@@ -1,10 +1,19 @@
 const distr = require('../src/distributeMoney');
 
 describe('distributeMoney Tests', () => { 
-    test('correct number of participants in output', () => {
+    test('correct number of participants in output array', () => {
         for (let i = 1; i < 20; i++) {
             let distribution = distr.distributeMoney(i, 10);
             expect(distribution.length).toEqual(i);
+        }
+    })
+
+    test('each participant receive at least 1 cent', () => {
+        for (let i = 0; i < 100; i++) {
+            let distribution = distr.distributeMoney(10, 1);
+            for (let j = 0; j < 10; j++) {
+                expect(distribution[j]).toBeGreaterThanOrEqual(0.01);
+            }
         }
     })
 
